@@ -17,7 +17,7 @@ export function RunOnLoad() {
 
   const url = new URL(window.location.href)
   const params = url.searchParams
-  const pathogenId = params.get('pathogen')
+  const pathogenId = params.get('dataset')
   const fastaParam = params.get('fasta')
   if (typeof pathogenId !== 'string' || typeof fastaParam !== 'string') {
     return <div />
@@ -28,7 +28,7 @@ export function RunOnLoad() {
   }
 
   const pathogen: Dataset | undefined = datasets.find((data) => {
-    return data.id === pathogenId
+    return data.attributes.name.value === pathogenId
   })
   if (pathogen !== datasetCurrent) {
     setDatasetHighlighted(pathogen)
