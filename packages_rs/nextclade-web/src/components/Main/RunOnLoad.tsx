@@ -45,18 +45,11 @@ export function RunOnLoad() {
   }
 
   const fastaUrl: string = fastaParam
-  console.log(fastaUrl) // eslint-disable-line no-console
   const ai = new AlgorithmInputUrl(fastaUrl)
-  console.log(ai) // eslint-disable-line no-console
-
-  console.log(qryInputs) // eslint-disable-line no-console
   if (!qryInputs.some((element) => element.type === 'Url' && element.name === fastaUrl)) {
     addQryInputs([ai])
   }
 
-  console.log('datasetCurrent') // eslint-disable-line no-console
-  console.log(datasetCurrent) // eslint-disable-line no-console
-  console.log('datasetCurrent') // eslint-disable-line no-console
   if (typeof datasetCurrent !== 'undefined') {
     run()
   }
