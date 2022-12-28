@@ -39,9 +39,10 @@ export function RunOnLoad() {
       break
     }
   }
-  console.log(pathogen) // eslint-disable-line no-console
-  setDatasetHighlighted(pathogen)
-  setDatasetCurrent(datasetHighlighted)
+  if (pathogen !== datasetCurrent) {
+    setDatasetHighlighted(pathogen)
+    setDatasetCurrent(datasetHighlighted)
+  }
 
   const fastaUrl: string = fastaParam
   console.log(fastaUrl) // eslint-disable-line no-console
@@ -51,8 +52,13 @@ export function RunOnLoad() {
   console.log(qryInputs) // eslint-disable-line no-console
   if (!qryInputs.some((element) => element.type === 'Url' && element.name === fastaUrl)) {
     addQryInputs([ai])
-    run()
   }
 
+  console.log('datasetCurrent') // eslint-disable-line no-console
+  console.log(datasetCurrent) // eslint-disable-line no-console
+  console.log('datasetCurrent') // eslint-disable-line no-console
+  if (typeof datasetCurrent !== 'undefined') {
+    run()
+  }
   return <div />
 }
