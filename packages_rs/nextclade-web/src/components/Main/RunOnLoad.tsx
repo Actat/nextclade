@@ -27,18 +27,9 @@ export function RunOnLoad() {
     return <div />
   }
 
-  let pathogen: Dataset | undefined
-  for (const data of datasets) {
-    for (const [key, value] of Object.entries(data)) {
-      if (key === 'id' && value === pathogenId) {
-        pathogen = data
-        break
-      }
-    }
-    if (typeof pathogen !== 'undefined') {
-      break
-    }
-  }
+  const pathogen: Dataset | undefined = datasets.find((data) => {
+    return data.id === pathogenId
+  })
   if (pathogen !== datasetCurrent) {
     setDatasetHighlighted(pathogen)
     setDatasetCurrent(datasetHighlighted)
